@@ -1,5 +1,6 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { DeployFunction } from "hardhat-deploy/types"
+// @ts-ignore
 import { ethers } from "hardhat"
 
 const deployBox: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
@@ -19,6 +20,7 @@ const deployBox: DeployFunction = async function (hre: HardhatRuntimeEnvironment
   const timeLock = await ethers.getContract("TimeLock")
   const transferTx = await boxContract.transferOwnership(timeLock.address)
   await transferTx.wait(1)
+  log('!!! DONE !!!')
 }
 
 export default deployBox
